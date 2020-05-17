@@ -1,0 +1,51 @@
+.container {
+    min-height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 100%;
+}
+
+header {
+    background-color: #ddd;
+    padding: 20px;
+    font-size: 1.5rem;
+
+}
+.logs, .actions, .severity {
+    display: flex;
+    flex-direction: column;
+}
+.main {
+    margin: 20px;
+}
+.dynamic-fields{
+    display: flex;
+    justify-content: space-around;
+}
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+}
+
+.rule-name {
+    width: 100%;
+}
+
+.add-rule .common-fields {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-evenly;
+}
+
+.toolbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 20px;
+}
+
+.toolbar .right-buttons button {
+    margin: 0px 20px;
+}

@@ -1,0 +1,133 @@
+{
+  "rules": [
+    {
+      "process": [
+        {
+          "name": {
+            "type": "STRING",
+            "required": true
+          }
+        },
+        {
+          "path": {
+            "type": "STRING",
+            "required": true
+          }
+        },
+        {
+          "action": {
+            "type": "RADIO",
+            "default": "Protect",
+            "options": [
+              "Allow",
+              "Detect",
+              "Protect"
+            ]
+          }
+        },
+        {
+          "logMessage": {
+            "type": "STRING"
+          }
+        },
+        {
+          "severity": {
+            "type": "SELECT",
+            "required": true,
+            "default": "High",
+            "options": [
+              "High",
+              "Medium",
+              "Low"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "sql": [
+        {
+          "name": {
+            "type": "STRING",
+            "required": true,
+            "validator": "Validators.required"
+          }
+        },
+        {
+          "vendor": {
+            "type": "SELECT",
+            "required": true,
+            "validator": "Validators.required",
+            "options": [
+              "Oracle",
+              "MySQL",
+              "Any"
+            ]
+          }
+        },
+        {
+          "vendorOptions": {
+            "type": "CHECKBOX_GROUP",
+            "vendor": "MySQL",
+            "options": [
+              {
+                "quoted-identifiers": {
+                  "checked": false
+                },
+                "no-backslash-escapes": {
+                  "checked": false
+                }
+              }
+            ]
+          }
+        },
+        {
+          "inputTypes": {
+            "type": "CHECKBOX_GROUP",
+            "options": [
+              {
+                "HTTP": {
+                  "checked": true
+                },
+                "Database": {
+                  "checked": false
+                },
+                "Deserialization": {
+                  "checked": false
+                }
+              }
+            ]
+          }
+        },
+        {
+          "action": {
+            "type": "RADIO",
+            "default": "Protect",
+            "options": [
+              "Allow",
+              "Detect",
+              "Protect"
+            ]
+          }
+        },
+        {
+          "logMessage": {
+            "type": "STRING"
+          }
+        },
+        {
+          "severity": {
+            "type": "SELECT",
+            "required": true,
+            "default": "High",
+            "options": [
+              "High",
+              "Medium",
+              "Low"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

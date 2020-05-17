@@ -1,0 +1,110 @@
+<div class="container">
+    <header>{{selectedMessage}}</header>
+    <div class="main">
+        <section class="rules-list" *ngIf="isStep1">
+            <h4>Rules List</h4>
+            <form [formGroup]="rulesForm">
+                <mat-form-field>
+                    <mat-label>Select an Event Type</mat-label>
+                    <mat-select formControlName="rule" (selectionChange)="onSelectEvent()">
+                        <mat-option *ngFor="let rule of rules" [value]="rule">
+                            {{rule.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </form>
+        </section>
+        <section class="add-rule" *ngIf="isStep2">
+            <form [formGroup]="addForm">
+                <mat-form-field class="rule-name">
+                    <mat-label>Rule Name</mat-label>
+                    <input matInput placeholder="enter a rule name" value="" formControlName="name">
+                </mat-form-field>
+                <div class="dynamic-fields">
+                    <div *ngFor="let f of fieldsList">
+                        <div [ngSwitch]="f.type">
+                            <p *ngSwitchCase="'string'">
+                                <mat-form-field formGroupName="dynamic">
+                                    <mat-label>{{f.label}}</mat-label>
+                                    <input matInput placeholder="enter a value" value="" formControlName="{{f.label}}">
+                                </mat-form-field>
+                            </p>
+                            <p *ngSwitchCase="'select'">
+                                <mat-form-field formGroupName="dynamic">
+                                    <mat-label>{{f.label}}</mat-label>
+                                    <mat-select formControlName="{{f.label}}"
+                                        (selectionChange)="onSelectionChange(f.label)">
+                                        <mat-option *ngFor="let o of f.options" [value]="o">
+                                            {{o}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </p>
+                            <div *ngSwitchCase="'checkbox_group'" formGroupName="dynamic">
+                                <div *ngIf="f.label === 'vendorOptions' && isVendorOptions">
+
+                                    <label>{{f.label}}</label>
+                                    <div *ngFor="let o of f.options">
+                                        <mat-checkbox formControlName="{{f.label}}" value="o.checked"
+                                            [checked]='o.checked' indeterminate=false>{{o.label}}{{o.checked}}
+                                        </mat-checkbox>
+                                    </div>
+                                </div>
+                                <div *ngIf="f.label !== 'vendorOptions'">
+                                    <label>{{f.label}}</label>
+                                    <div *ngFor="let o of f.options">
+                                        <mat-checkbox formControlName="{{f.label}}" value="o.checked"
+                                            [checked]='o.checked' indeterminate=false>{{o.label}}{{o.checked}}
+                                        </mat-checkbox>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="common-fields">
+                    <div class="actions">
+                        <label>Action</label>
+                        <mat-radio-group aria-labelledby="adio-group-label" class="radio-group"
+                            formControlName="action">
+                            <mat-radio-button class="radio-button" *ngFor="let action of actions" [value]="action">
+                                {{action.name}}
+                            </mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                    <div class="logs">
+                        <label>Log Message (OPTIONAL)</label>
+                        <mat-form-field class="log">
+
+
+                            <input matInput placeholder="enter custom log message" value="" formControlName="log">
+                        </mat-form-field>
+                    </div>
+                    <div class="severity">
+                        <mat-form-field class="severity">
+                            <label for="">Severity</label>
+                            <mat-select formControlName="severity">
+                                <mat-option *ngFor="let rule of rules" [value]="rule">
+                                    {{rule.name}}
+                                </mat-option>
+                            </mat-select>
+                            <!-- <mat-error *ngIf="rule.hasError('required')">
+                                Writer required.
+                            </mat-error> -->
+                        </mat-form-field>
+                    </div>
+                </div>
+            </form>
+        </section>
+    </div>
+    <div class="toolbar">
+        <div class="left-buttons">
+            <button mat-flat-button color="primary" (click)="onReset()">Reset</button>
+        </div>
+        <div class="right-buttons">
+            <button mat-flat-button color="primary" (click)="onCancel()">Cancel</button>
+            <button mat-flat-button color="primary" (click)="onSave()">Save</button>
+        </div>
+    </div>
+</div>
