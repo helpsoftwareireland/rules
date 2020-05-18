@@ -68,7 +68,7 @@
                         <label>Action</label>
                         <mat-radio-group aria-labelledby="radio-group-label" class="radio-group"
                             formControlName="action">
-                            <mat-radio-button selected class="radio-button" *ngFor="let action of actions" [value]="action">
+                            <mat-radio-button [checked]="action.name==='Protect'" class="radio-button" *ngFor="let action of actions" [value]="action">
                                 {{action.name}}
                             </mat-radio-button>
                         </mat-radio-group>

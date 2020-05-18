@@ -44,8 +44,8 @@ export class AddRuleComponent implements OnInit {
   isVendorOptions = false;
 
   constructor(private formBuilder: FormBuilder, private fieldsData: FieldService,
-    public dialogRef: MatDialogRef<AddRuleComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) { }
+              public dialogRef: MatDialogRef<AddRuleComponent>,
+              @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit(): void {
     this.selectedMessage = this.getMessage(1);
@@ -65,7 +65,6 @@ export class AddRuleComponent implements OnInit {
           this.selectedFields = obj[this.rule.value.name.toLowerCase()];
         }
       });
-      console.log(this.selectedFields);
       this.selectedMessage = `${this.getMessage(2)}:${this.rule.value.name}`;
       this.initNewRuleForm();
     });
@@ -91,8 +90,8 @@ export class AddRuleComponent implements OnInit {
         });
       }
     });
-    console.log(this.fieldsList);
     this.dynamicFormGroup = new FormGroup(group);
+    this.addForm.removeControl('dynamic');
     this.addForm.addControl('dynamic', this.dynamicFormGroup);
   }
   parseOptions(options): any[] {
