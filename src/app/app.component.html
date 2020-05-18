@@ -1,4 +1,7 @@
 <div class="container">
   <h3>Add Rules Example</h3>
   <button mat-flat-button color="primary" (click)="onStart()">Get Started</button>
+  <div *ngIf="Jsonresult" class="json-result">
+    {{ Jsonresult | json }}
+  </div>
 </div>

@@ -9,6 +9,7 @@ import { AddRuleComponent } from './add-rule/add-rule.component';
 export class AppComponent {
   title = 'uitest';
   getStarted = false;
+  Jsonresult: string;
   constructor(public dialog: MatDialog) { }
   onStart(): void {
     const dialogRef = this.dialog.open(AddRuleComponent, {
@@ -18,6 +19,7 @@ export class AppComponent {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);
+      this.Jsonresult = result;
     });
   }
 }
