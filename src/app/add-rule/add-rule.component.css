@@ -20,14 +20,17 @@ header {
 }
 .dynamic-fields{
     display: flex;
-    justify-content: space-around;
+    grid-template-columns: repeat(3,1fr);
+    justify-content: space-between;
 }
 .radio-group {
     display: flex;
     flex-direction: column;
     margin: 15px 0;
 }
-
+.radio-button{
+    padding: 0 0 10px;
+}
 .rule-name {
     width: 100%;
 }
@@ -36,7 +39,7 @@ header {
     display: flex;
     flex-direction: row;
     align-items: baseline;
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
 
 .toolbar {
